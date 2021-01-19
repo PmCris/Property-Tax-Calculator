@@ -1,0 +1,67 @@
+user1 = 0
+user2 = 0
+
+print('Living Room')
+print('Kitchen')
+print('Bathroom')
+print('Dining Room')
+print()
+Amount_of_Bathrooms = int(input('The amount of Bathrooms in the house: '))
+Amount_of_Kitchens = int(input('The amount of Kitchens in the house: '))
+Amount_of_other_rooms = int(input('The amount of Other_rooms in the house: '))
+Amount_of_bedrooms = int(input('The amount of bedrooms in the house: '))
+print()
+if Amount_of_Bathrooms < Amount_of_Kitchens < 1 or Amount_of_bedrooms < 1:
+    print('this house doesnt have a bathroom')
+else:
+    while (Amount_of_Bathrooms > 0) or (Amount_of_Kitchens > 0) or (Amount_of_Bathrooms > 0):
+        Name_of_your_room = input('Enter the name of your room: ')
+        length = float(input('Enter the length of your room: '))
+        width = float(input('Enter the width of your room: '))
+        area = length * width
+    if Name_of_your_room == 'Bathroom':
+        Amount_of_Bathrooms = Amount_of_Bathrooms - 1
+        tax_rate = 3.99
+        room_tax = area * tax_rate
+    else:
+        Amount_of_Bathrooms = Amount_of_Bathrooms - 1
+        tax_rate = 3.99
+        room_tax = area * tax_rate
+    if Name_of_your_room == 'Kitchen':
+        Amount_of_Kitchens = Amount_of_Kitchens - 1
+        tax_rate = 2.99
+        room_tax = area * tax_rate
+    else:
+        Amount_of_Kitchens = Amount_of_Kitchens - 1
+        tax_rate = 2.99
+        room_tax = area * tax_rate
+    if Name_of_your_room == 'Bedroom':
+        Amount_of_bedrooms = Amount_of_Bathrooms
+        tax_rate = 1.49
+        room_tax = area * tax_rate
+    else:
+        Amount_of_bedrooms = Amount_of_bedrooms - 1
+        tax_rate = 1.49
+        room_tax = area * tax_rate
+    if Name_of_your_room == 'Dining Room' or Name_of_your_room == 'Living room':
+        Amount_of_other_rooms = Amount_of_other_rooms - 1
+        tax_rate = 0.59
+        room_tax = area * tax_rate
+    else:
+        Amount_of_other_rooms = Amount_of_other_rooms - 1
+        tax_rate = 0.59
+        room_tax = area * tax_rate
+    print()
+    total_tax = user1 * room_tax
+    user1 = total_tax
+    area = user1 + area
+    user1 = area
+    minimum_tax = 1400
+print()
+if area > 200:
+    due_taxes = minimum_tax + 489
+    print('Total Square footage:', area, 'square feet')
+    print('Total taxes due: $', total_tax)
+else:
+    print('Total Square footage:', area, 'square feet')
+    print('Total taxes due: $', 1400)
