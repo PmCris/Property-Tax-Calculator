@@ -1,0 +1,117 @@
+import math
+kitchen_rate = 2.99
+bathroom_rate = 3.99
+bedroom_rate = 1.49
+other_rate = 0.59
+min_tax = 1400.00
+lux_tax = 489.00
+kitchens = int(input("Enter number of kitchens: "))
+if kitchens >= 1:
+ print("Number of kitchens: {}".format(kitchens))
+else:
+ print("There needs to be at least 1 kitchen in the house.")
+bathrooms = int(input("Enter number of bathrooms: "))
+if bathrooms >= 1:
+ print("Number of bathrooms: {}".format(bathrooms))
+else:
+ print("There needs to be at least 1 bathroom in the house.")
+bedrooms = int(input("Enter number of bedrooms: "))
+if bedrooms >= 1:
+ print("Number of bedrooms: {}".format(bedrooms))
+else:
+ print("There needs to be at least 1 bedroom in the house.")
+other_rooms = int(input("Enter number of other rooms: "))
+if other_rooms >= 1:
+ print("Number of other rooms: {}".format(other_rooms))
+else:
+ print("There needs to be at least 1 other room in the house.")
+rooms = [kitchens, bathrooms, bedrooms, other_rooms]
+def square_feet(length, width):
+ # Multiplies the length and width to get the square feet of a room.
+ area = length * width
+ return area
+def kitchen_taxes(kitchen_rate):
+ # Multiplies the square_feet of kitchens and the tax rate of kitchens.
+ cooking_tax = kitchen_rate * square_feet(length, width)
+ if square_feet(length, width) > 200:
+ return cooking_tax + lux_tax
+ else:
+ return cooking_tax
+def bathroom_taxes(bathroom_rate):
+ # Multiplies the square_feet of bathrooms and the tax rate of bathrooms.
+ bath_tax = bathroom_rate * square_feet(length, width)
+ if square_feet(length, width) > 200:
+ return bath_tax + lux_tax
+ else:
+ return bath_tax
+def bedroom_taxes(bedroom_rate):
+ # Multiplies the square_feet of bedrooms and the tax rate of bedrooms.
+ sleep_tax = bedroom_rate * square_feet(length, width)
+ if square_feet(length, width) > 200:
+ return sleep_tax + lux_tax
+ else:
+ return sleep_tax
+def other_taxes(other_rate):
+ # Multiplies the square_feet of bedrooms and the tax rate of bedrooms.
+ other_tax = other_rate * square_feet(length, width)
+ if square_feet(length, width) > 200:
+ return other_tax + lux_tax
+ else:
+ return other_tax
+square_feet_list = []
+kitchen_tax_list = []
+bathroom_tax_list = []
+bedroom_tax_list = []
+other_tax_list = []
+full_tax_list = []
+i = kitchens
+while i >= 1:
+ print('Enter length of kitchen: ', end='')
+ length = math.fabs(int(input()))
+ print('Enter width of kitchen: ', end='')
+ width = math.fabs(int(input()))
+ print('Square feet: ', square_feet(length, width))
+ square_feet_list.append(square_feet(length, width))
+ kitchen_tax_list.append(kitchen_taxes(kitchen_rate))
+ i = i - 1
+i = bathrooms
+while i >= 1:
+ print('Enter length of bathroom: ', end='')
+ length = math.fabs(int(input()))
+ print('Enter width of bathroom: ', end='')
+ width = math.fabs(int(input()))
+ print('Square feet: ', square_feet(length, width))
+ square_feet_list.append(square_feet(length, width))
+ bathroom_tax_list.append(bathroom_taxes(bathroom_rate))
+ i = i - 1
+i = bedrooms
+while i >= 1:
+ print('Enter length of bedroom: ', end='')
+ length = math.fabs(int(input()))
+ print('Enter width of bedroom: ', end='')
+ width = math.fabs(int(input()))
+ print('Square feet: ', square_feet(length, width))
+ square_feet_list.append(square_feet(length, width))
+ bedroom_tax_list.append(bedroom_taxes(bedroom_rate))
+ i = i - 1
+i = other_rooms
+while i >= 1:
+ print('Enter length of other_room(s): ', end='')
+ length = math.fabs(int(input()))
+ print('Enter width of other_room(s): ', end='')
+ width = math.fabs(int(input()))
+ print('Square feet: ', square_feet(length, width))
+ square_feet_list.append(square_feet(length, width))
+ other_tax_list.append(other_taxes(other_rate))
+ i = i - 1
+print("Total amount of square footage: ", end='')
+print(sum(square_feet_list))
+print("Total amount of taxes from kitchens: ${:.2f} ".format((sum(kitchen_tax_list))))
+print("Total amount of taxes from bathrooms: ${:.2f} ".format((sum(bathroom_tax_list))))
+print("Total amount of taxes from bedrooms: ${:.2f} ".format((sum(bedroom_tax_list))))
+print("Total amount of taxes from other rooms: ${:.2f} ".format((sum(other_tax_list))))
+total_taxes = sum(kitchen_tax_list) + sum(bathroom_tax_list) + sum(bedroom_tax_list) + sum(other_tax_list)
+if total_taxes > min_tax:
+ print("Total amount of taxes: ${:.2f} ".format(total_taxes))
+else:
+ print("Total amount of taxes: ${:.2f}".format(min_tax))
